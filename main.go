@@ -15,26 +15,23 @@ func main() {
 	green := color.New(color.FgGreen).SprintFunc()
 	bold := color.New(color.Bold).SprintFunc()
 
-	// figure.NewColorFigure("Stegano CLI", "doom", "green", true).Print()
-	// fmt.Println()
-
-	fmt.Println()
-	fmt.Println()
-	fmt.Println(green("███████╗████████╗███████╗ ██████╗  █████╗ ███╗   ██╗ ██████╗  "))
-	fmt.Println(green("██╔════╝╚══██╔══╝██╔════╝██╔════╝ ██╔══██╗████╗  ██║██╔═══██╗ "))
-	fmt.Println(green("███████╗   ██║   █████╗  ██║  ███╗███████║██╔██╗ ██║██║   ██║ "))
-	fmt.Println(green("╚════██║   ██║   ██╔══╝  ██║   ██║██╔══██║██║╚██╗██║██║   ██║ "))
-	fmt.Println(green("███████║   ██║   ███████╗╚██████╔╝██║  ██║██║ ╚████║╚██████╔╝ "))
-	fmt.Println(green("╚══════╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  "))
-	fmt.Println()
-
 	if len(os.Args) < 2 {
+		fmt.Println()
+		fmt.Println()
+		fmt.Println(green("███████╗████████╗███████╗ ██████╗  █████╗ ███╗   ██╗ ██████╗  "))
+		fmt.Println(green("██╔════╝╚══██╔══╝██╔════╝██╔════╝ ██╔══██╗████╗  ██║██╔═══██╗ "))
+		fmt.Println(green("███████╗   ██║   █████╗  ██║  ███╗███████║██╔██╗ ██║██║   ██║ "))
+		fmt.Println(green("╚════██║   ██║   ██╔══╝  ██║   ██║██╔══██║██║╚██╗██║██║   ██║ "))
+		fmt.Println(green("███████║   ██║   ███████╗╚██████╔╝██║  ██║██║ ╚████║╚██████╔╝ "))
+		fmt.Println(green("╚══════╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  "))
+		fmt.Println()
 		fmt.Println("Usage:")
 		fmt.Println("  stegano embed 'hidden message' into image.png as output.png")
 		fmt.Println("  stegano embed image hidden.png into image.png as output.png")
 		fmt.Println("  stegano ext from image.png")
 		fmt.Println("  stegano ext image from image.png")
 		fmt.Println("  stegano ext image from image.png as output.png")
+		fmt.Println()
 		os.Exit(0)
 	}
 
