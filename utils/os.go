@@ -2,6 +2,7 @@ package utils
 
 import (
 	"image"
+	"image/jpeg"
 	"image/png"
 	"os"
 )
@@ -12,6 +13,9 @@ func LoadImage(path string) (image.Image, error) {
 		return nil, err
 	}
 	defer file.Close()
+
+	image.RegisterFormat("png", "png", png.Decode, png.DecodeConfig)
+	image.RegisterFormat("jpeg", "jpeg", jpeg.Decode, jpeg.DecodeConfig)
 
 	img, _, err := image.Decode(file)
 	if err != nil {
