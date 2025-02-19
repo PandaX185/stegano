@@ -16,14 +16,14 @@ Stegano is a simple and efficient image steganography tool written in Go. It all
 ### Embedding a Text
 To embed a hidden text inside a host image:
 ```sh
-stegano embed "Hello World" into secret.png as result.png
+./stegano embed "Hello World" into secret.png as result.png
 ```
 This will create `result.png` containing the hidden `Hello World` inside `secret.png`.
 
 ### Extracting a Hidden Text
 To extract a hidden text from a stego-image:
 ```sh
-stegano ext from stego.png as extracted.png
+./stegano ext from stego.png as extracted.png
 ```
 This will extract the hidden text from `stego.png` and save it as `extracted.png`.
 
@@ -31,13 +31,13 @@ This will extract the hidden text from `stego.png` and save it as `extracted.png
 ### Embedding an Image
 To embed a hidden image inside a host image:
 ```sh
-stegano embed image input.png into secret.png as result.png
+./stegano embed image input.png into secret.png as result.png
 ```
 This will create `result.png` containing the hidden `input.png` inside `secret.png`.
 
 ### Extracting a Hidden Image
 To extract a hidden image from a stego-image:
 ```sh
-stegano ext image from stego.png as extracted.png
+./stegano ext image from stego.png as extracted.png
 ```
 This will extract the hidden image from `stego.png` and save it as `extracted.png`.
