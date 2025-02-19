@@ -14,10 +14,13 @@ func ExtractText(img image.Image) string {
 		bounds    = img.Bounds()
 		textBytes []byte
 		textLen   uint32 = 0
-		bitIndex         = 0
-		curByte   byte   = 0
+		bitIndex  int32
+		curByte   byte
 	)
 
+	showProgressBar("Extracting text...")
+
+OUTER:
 	for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
 		for x := bounds.Min.X; x < bounds.Max.X; x++ {
 			r, _, _, _ := img.At(x, y).RGBA()
@@ -31,8 +34,7 @@ func ExtractText(img image.Image) string {
 					textBytes = append(textBytes, curByte)
 					curByte = 0
 					if uint32(len(textBytes)) >= textLen {
-						showProgressBar("Extracting text...")
-						return string(textBytes)
+						break OUTER
 					}
 				}
 			}
@@ -40,16 +42,20 @@ func ExtractText(img image.Image) string {
 		}
 	}
 
-	return ""
+	return string(textBytes)
 }
 
 func ExtractImage(img image.Image) image.Image {
-	bounds := img.Bounds()
-	bitIndex := 0
-	var width, height uint32
-	var hiddenBytes []byte
-	var curByte byte
-	red := cliColor.New(cliColor.FgRed).SprintFunc()
+	var (
+		bounds        = img.Bounds()
+		bitIndex      = 0
+		width, height uint32
+		hiddenBytes   []byte
+		curByte       byte
+		red           = cliColor.New(cliColor.FgRed).SprintFunc()
+	)
+
+	showProgressBar("Extracting image...")
 
 	for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
 		for x := bounds.Min.X; x < bounds.Max.X; x++ {
@@ -77,8 +83,6 @@ func ExtractImage(img image.Image) image.Image {
 		hiddenBytes = append(hiddenBytes, curByte)
 		curByte = 0
 	}
-
-	showProgressBar("Extracting image...")
 
 	img, err := png.Decode(bytes.NewReader(hiddenBytes))
 	if err != nil {

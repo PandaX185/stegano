@@ -17,6 +17,8 @@ func EmbedText(img image.Image, text string) image.Image {
 	textLen := len(textBytes)
 	bitIndex := 0
 
+	showProgressBar("Embedding text...")
+
 	for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
 		for x := bounds.Min.X; x < bounds.Max.X; x++ {
 			r, g, b, a := img.At(x, y).RGBA()
@@ -36,8 +38,6 @@ func EmbedText(img image.Image, text string) image.Image {
 			res.Set(x, y, color.RGBA{r8, g8, b8, uint8(a >> 8)})
 		}
 	}
-
-	showProgressBar("Embedding text...")
 
 	return res
 }
@@ -60,6 +60,8 @@ func EmbedImage(img image.Image, hidden image.Image) image.Image {
 	if bounds.Dx()*bounds.Dy() < requiredPixels {
 		log.Fatal(red("❌ Error: Host image is too small to embed the hidden image."))
 	}
+
+	showProgressBar("Embedding image...")
 
 	for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
 		for x := bounds.Min.X; x < bounds.Max.X; x++ {
@@ -96,8 +98,6 @@ func EmbedImage(img image.Image, hidden image.Image) image.Image {
 			res.Set(x, y, color.RGBA{r8, g8, b8, uint8(a >> 8)})
 		}
 	}
-
-	showProgressBar("Embedding image...")
 
 	return res
 }
